@@ -1,6 +1,6 @@
 # Tamper Protection
 
-A Rust project focused on implementing tamper protection mechanisms. This project aims to detect and prevent unauthorized modifications to files or application data.
+A Rust project focused on implementing tamper protection mechanisms. This project aims to detect and prevent unauthorized modifications to files on a folder.
 
 ## Getting Started
 
