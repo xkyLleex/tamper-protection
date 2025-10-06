@@ -49,8 +49,17 @@ fn program_get_hash(args : &Vec<String>) -> String {
 /// 
 fn program_validate(args : &Vec<String>) {
     let hash_to_validate = &args[1];
+    if hash_to_validate.len() != 64 {
+        cli_handler::print("[Error] Given hash code length is not valid (should be 64 chars)!", cli_handler::CliColor::Red);
+        cli_handler::print(&format!("  - Given Hash Code: {}", hash_to_validate), cli_handler::CliColor::Red);
+        return;
+    }
+
     let vec_for_program_get_hash = vec!["".to_string(), args[2].clone(), args[3].clone()];
     let hast_folder =  program_get_hash(vec_for_program_get_hash.as_ref());
+    if hast_folder.is_empty() {
+        return;
+    }
 
     if hash_to_validate == &hast_folder {
         cli_handler::print("\n[Success] Hash code match, folder is valid.", cli_handler::CliColor::Green);
