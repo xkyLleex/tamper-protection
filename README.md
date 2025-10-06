@@ -31,6 +31,32 @@ cargo build --release
 
 3. if all done, you will get the hash code from program output.
 
+#### Get folder hash code
+You can get the folder hash code using:
+```bash
+tamper_protection /path/to/your/folder your_salt
+```
+
+#### Verification the hash code
+When you get the folder hash code, you can verification the hash code using:
+```bash
+tamper_protection your_folder_hash_code /path/to/your/folder your_salt
+```
+
+#### Colorize output so annoying...
+
+You can add `no` or `nocolor` behind the command like this:
+
+```bash
+# Get folder hash code
+tamper_protection /path/to/your/folder your_salt nocolor
+
+# Verification the hash code
+tamper_protection your_folder_hash_code /path/to/your/folder your_salt no
+```
+
+To disable the colorize output
+
 ## License
 
 This project is licensed under the MIT License.
