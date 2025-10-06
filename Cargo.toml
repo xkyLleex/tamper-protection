@@ -1,0 +1,11 @@
+[package]
+name = "tamper_protection"
+version = "0.1.0"
+edition = "2024"
+authors = ["kyL_lee"]
+description = "Folder Hash Code Calculator"
+
+[dependencies]
+sha2 = "0.10"   # SHA-256
+hex = "0.4"     # Get hash code HEX
+walkdir = "2.3" # Walking through the directory
