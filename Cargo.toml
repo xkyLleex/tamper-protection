@@ -9,3 +9,4 @@ description = "Folder Hash Code Calculator"
 sha2 = "0.10"   # SHA-256
 hex = "0.4"     # Get hash code HEX
 walkdir = "2.3" # Walking through the directory
+lazy_static = "1.5.0"

@@ -2,6 +2,7 @@ use std::{
     env, path::Path
 };
 
+mod global;
 mod cli_handler;
 mod hash_calc;
 
@@ -18,7 +19,7 @@ fn program_get_hash(args : &Vec<String>) -> String {
     let folder_to_hash: &Path = Path::new(&args[1]);
 
     if !folder_to_hash.is_dir() {
-        eprintln!("[Error] Folder {:?} not existing or not a folder.", folder_to_hash);
+        cli_handler::print(&format!("[Error] Folder {:?} not existing or not a folder.", folder_to_hash), cli_handler::CliColor::Red);
         return "".to_string();
     }
 
@@ -30,7 +31,7 @@ fn program_get_hash(args : &Vec<String>) -> String {
         Ok(total_hash) => {
             cli_handler::print("--- Calc Done ---", cli_handler::CliColor::Default);
             cli_handler::print(&format!("\n Folder: {:?} hash code is:", folder_to_hash), cli_handler::CliColor::Default);
-            cli_handler::print(&total_hash, cli_handler::CliColor::Default);
+            cli_handler::print(&total_hash, cli_handler::CliColor::Green);
             return total_hash;
         }
         Err(e) => {
@@ -47,12 +48,12 @@ fn program_get_hash(args : &Vec<String>) -> String {
 /// - `args` - [tamperProtection <-v | --validate | validate> <hash_code> <folder_path> <salt>]
 /// 
 fn program_validate(args : &Vec<String>) {
-    let hash_to_validate = &args[2];
-    let vec_for_program_get_hash = vec!["".to_string(), args[3].clone(), args[4].clone()];
+    let hash_to_validate = &args[1];
+    let vec_for_program_get_hash = vec!["".to_string(), args[2].clone(), args[3].clone()];
     let hast_folder =  program_get_hash(vec_for_program_get_hash.as_ref());
 
     if hash_to_validate == &hast_folder {
-        cli_handler::print("\n[Success] Hash code match, folder is valid.", cli_handler::CliColor::Default);
+        cli_handler::print("\n[Success] Hash code match, folder is valid.", cli_handler::CliColor::Green);
     } else {
         cli_handler::print("\n[Error] Hash code not match, folder may be tampered.", cli_handler::CliColor::Default);
         cli_handler::print(&format!("  - Given Hash Code: {}", hash_to_validate), cli_handler::CliColor::Blue);
