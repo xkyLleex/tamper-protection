@@ -55,8 +55,8 @@ pub fn calculate_folder_hash_with_salt(folder_path: &Path, salt: &[u8]) -> Resul
         if path.is_file() {
             // Calculate the file hash
             let file_hash = calculate_file_hash(path)?;
-            // Update the total hasher with the file path and its hash
-            total_hasher.update(path.to_string_lossy().as_bytes());
+            // Update the total hasher with the file and its hash
+            total_hasher.update(path.file_name().unwrap().to_string_lossy().as_bytes());
             total_hasher.update(&file_hash);
         }
     }
